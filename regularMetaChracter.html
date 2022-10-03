@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let reg = /she.zad/;
+        reg = /she?hzad/;
+        reg = /sh*/;
+        reg = /^is/;
+        reg = /sh[exy]h[a-z]ad/;
+        reg = /sh[exy]h[a-z]a{0,2}d/;
+        reg = /sh[exy](h[a-z]){2}a{2}d/;
+
+        let str = "shehzhaaad is good boy";
+
+        console.log(reg.exec(str));
+
+        if(reg.test(str)){
+            console.log(`String ${str} matches with the expression ${reg}`);
+        }else{
+            console.log(`String ${str} does not match with the expression ${reg}`);
+        }
+    </script>
+</body>
+</html>

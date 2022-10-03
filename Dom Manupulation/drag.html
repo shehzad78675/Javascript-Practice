@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .boxs{
+            border: 2px solid black;
+            width: 275px;
+            height: 182px;
+            text-align: center;
+            display: inline-block;
+            margin: 5px;
+        }
+        .imgBox{
+            background-image: url('download.jfif');
+            position: relative;
+            width: 270px;
+            height: 182px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="boxs">
+        <div class="imgBox" draggable="true"></div>
+    </div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+
+    <script>
+        let boxs = document.querySelectorAll('.boxs');
+        let image = document.querySelector('.imgBox');
+
+        image.addEventListener('dragstart', (e) => {
+            console.log('drag');
+            setTimeout(() => {
+                image.style.display = 'none'
+            }, 0);
+        });
+        image.addEventListener('dragend', (e) => {
+            console.log('drag');
+            image.style.display = 'block';
+        });
+
+        for(let box of boxs){
+            box.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                // box.style.backgroundColor = 'lightskyblue';
+            });
+            box.addEventListener('dragenter', (e) => {
+                box.style.backgroundColor = 'lightskyblue';
+            });
+            box.addEventListener('dragleave', (e) => {
+                box.style.backgroundColor = 'white';
+            });
+            box.addEventListener('drop', (e) => {
+                box.append(image);
+                box.style.backgroundColor = 'white';
+            });
+        }
+    </script>
+</body>
+</html>

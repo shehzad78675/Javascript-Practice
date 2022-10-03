@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function getData(){
+            let response = await fetch("https://api.github.com/users");
+            let users = await response.json();
+            return users;
+        }
+
+        // getData().then(data => console.log(data));
+
+        async function postData(){
+            let url = "https://jsonplaceholder.typicode.com/posts";
+            let data = `{"name":"test239093323","salary":"123","age":"23"}`;
+            let param = {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: data
+            }
+
+            let response = await fetch(url, param);
+            let user = await response.json();
+
+            return user;
+        }
+
+        postData().then(data => console.log(data));
+    </script>
+</body>
+</html>

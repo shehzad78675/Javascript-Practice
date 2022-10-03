@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to my website</h1>
+    <div id="editable">This is editable div</div>
+    
+
+    <script>
+        
+        let editable = document.getElementById("editable");
+        if(localStorage.length != 0){
+            editable.innerText = localStorage.getItem('edited');
+        }
+        editable.addEventListener('click', edit);
+
+        let input = document.createElement("input");
+        input.setAttribute('type', "text");
+        input.id = 'input1';
+
+        function edit(){
+            // console.log(editable.innerText);
+            let prevText = editable.innerText;
+           
+            // console.log(input);
+            editable.replaceWith(input);
+
+            input.value = prevText;
+        }
+
+        input.addEventListener('blur', setText);
+
+        function setText(){
+            let value = input.value;
+            // console.log(value);
+            localStorage.setItem('edited', value);
+            // console.log(localStorage.getItem('edited'));
+
+            input.replaceWith(editable);
+            editable.innerText = value;
+        }
+    </script>
+</body>
+</html>

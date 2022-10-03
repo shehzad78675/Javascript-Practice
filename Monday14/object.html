@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const user = {
+            name : "Shehzad",
+            age : 20,
+            "where work" : 'Lahore'
+        }
+        let str = "0123456";
+        str[0] = "9";
+        console.log(str);
+        user.age = 30;
+        console.log(user.age);
+
+        let newUser = new Object();
+        newUser.name = "Ali";
+        newUser.salary = 30000;
+
+        user.isAdmin = true;
+
+        user["Dislike animals"] = false;
+
+        console.log(user.isAdmin);
+
+        console.log(newUser.salary);
+
+
+        let key = 5;
+        user.key = 5;
+        
+
+        for(key in user){
+            console.log(key, user[key]);
+        }
+
+        console.log(newUser);
+
+        let name = 'Hamza';
+        let obj = {
+            [name] : 6
+        }
+
+        console.log(obj);
+
+        console.log(name);
+
+        console.log(obj[name])
+
+        function makeUser(name, age){
+            return {
+                name: name,
+                age: age
+            }
+        }
+
+        let user1 = makeUser("Adnan", 18);
+        console.log(user1.name);
+
+        function makeUser1(name, age){
+            return {
+                name,
+                age: age
+            }
+        }
+
+        let user2 = makeUser1('Umer', 13);
+
+        let obj1 = {
+            0 : "test",
+            1 : "Faheem"
+        }
+
+        console.log(obj1["0"]);
+        console.log(obj1["1"]);
+        console.log(user2.name);
+
+        console.log("mali" in user);
+
+        let codes = {
+            "49": "Germany",
+            "41": "Switzerland",
+            "44": "Great Britain",
+            // ..,
+            "1": "USA"
+            };
+
+            for(let key in codes){
+                console.log(key);
+            }
+
+            let objec = {};
+            objec.name = "Shehzad";
+            objec.surname = "Muhammad";
+            console.log(objec);
+            objec.name = 'Sarmed';
+            console.log(objec);
+            objec.surname = "Ali";
+            console.log(objec);
+            delete objec.name;
+            console.log(objec);
+
+
+            function isEmpty(obj){
+                if(Object.keys(obj).length==0){
+                    return true;
+                }
+                return false;
+            }
+
+            let newObj = {
+                name:"Ali"
+            };
+            console.log(isEmpty(newObj));
+            console.log(Object.keys(user));
+            console.log(Object.values(user));
+
+            function objectSum(obj){
+                let sum = 0;
+                for(let key in obj){
+
+                    sum += obj[key];
+                }
+                return sum;
+            }
+
+            let salaries = {
+                John: 100,
+                Ann: 160,
+                Pete: 130
+                };
+
+            console.log(salaries);
+            console.log(objectSum(salaries));
+        
+            function multiplyNumeric(obj){
+                for(let key in obj){
+                    if((typeof obj[key]) == 'number'){
+                        obj[key] = obj[key]*2;
+                    }
+                }
+            }
+
+            let menu = {
+                width: 200,
+                height: 300,
+                title: "My menu"
+                };
+
+            console.log(typeof 3);
+            console.log(menu);
+            multiplyNumeric(menu);
+
+            console.log(menu);
+
+            let student = {
+                name: "Shehzad",
+                age: 36,
+                body: {
+                    height: 6,
+                    chest: 3
+                }
+            }
+
+            console.log(student.body.height);
+
+            function Acumulator(startingValue){
+                this.value = startingValue;
+
+                this.read=function(){
+                    this.value += +prompt("Enter number",0);
+                };
+            }
+
+            let acumulator = new Acumulator(1);
+
+            // acumulator.read();
+            // console.log(acumulator.value);
+            // acumulator.read();
+            // console.log(acumulator.value);
+
+            function Calculator(){
+                this.read = function(){
+                    this.a = +prompt("Enter the value of a?");
+                    this.b = +prompt("Enter the value of b");
+                }
+
+                this.sum = function(){
+                    return this.a + this.b;
+                }
+
+                this.mul = function(){
+                    return this.a * this.b;
+                }
+            }
+
+            let calculator = new Calculator();
+
+            calculator.read();
+            console.log(calculator.sum());
+            console.log(calculator.mul());
+    </script>
+
+
+</body>
+</html>

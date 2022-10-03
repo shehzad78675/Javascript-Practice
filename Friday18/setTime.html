@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function greet(){
+            console.log('Hi, I am Shehzad');
+        }
+
+        let timeOut = setTimeout(greet, 4000);
+
+        console.log(timeOut);
+
+        clearTimeout(timeOut);
+
+        let timeIntervel = setInterval(greet, 2000);
+
+        clearInterval(timeIntervel);
+
+        function printNumbers(from, to){
+            let curr = from;
+
+            let timeId = setInterval(() => {
+                console.log(curr);
+
+                if(curr == to){
+                    clearInterval(timeId);
+                }
+                curr++;
+            }, 1000);
+        }
+
+        function printNumbers1(from, to){
+            let curr = from;
+
+            let timeId = setInterval(function run(){
+                console.log(curr);
+
+                if(curr == to){
+                    clearInterval(timeId);
+                }
+                curr++;
+            }, 1000);
+        }
+
+        printNumbers(0, 6);
+    </script>
+</body>
+</html>

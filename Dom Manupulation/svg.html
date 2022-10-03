@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        /* border: 2px solid black; */
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .half {
+        /* border: 2px solid black; */
+        width: 50%;
+      }
+
+      .textarea {
+        width: 100%;
+        height: 100vh;
+        font-size: 3rem;
+      }
+      .second {
+        font-size: 5rem;
+        padding: 2rem;
+      }
+      .tooltip {
+        border: 3px solid black;
+        height: auto;
+        min-height: 1rem;
+        width: auto;
+        border-radius: 7px;
+        background-color: white;
+        display: none;
+        padding: 5px;
+      }
+      .second svg {
+        width: 100%;
+        height: 100%;
+      }
+      .selected{
+			fill: yellow;
+		}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="half">
+        <!-- <img src="./../chat-svgrepo-com.svg" height="400px" width="400px" alt=""> -->
+        <textarea name="" id="" class="textarea"></textarea>
+      </div>
+      <div class="half second"></div>
+    </div>
+    <div class="tooltip"></div>
+
+    <script>
+      let text = document.querySelector("textarea");
+      let second = document.querySelector(".second");
+      let paths;
+
+      let tooltip = document.querySelector(".tooltip");
+      tooltip.style.position = "absolute";
+
+      text.addEventListener("input", () => {
+        second.innerHTML = text.value;
+        paths = second.querySelectorAll("path");
+      });
+
+      second.addEventListener("mousemove", (e) => {
+        const tagName = e.target.tagName;
+        let index;
+        if (tagName === "path") {
+          const d_value = e.target.getAttribute("d");
+          paths.forEach((ele, ind) => {
+            const gVal = ele.getAttribute("d");
+            if (gVal === d_value) {
+                index = ind;
+            }
+          });
+          // let allPath =Array(paths).filter((item)=> item.getAttribute("d") == d_value);
+          console.log("d value ", paths[0].getAttribute("d"));
+          // console.log(allPath);
+
+          // console.log('svg', tagName);
+          tooltip.style.top = e.clientY - 10 + "px";
+          tooltip.style.left = e.clientX + 10 + "px";
+          tooltip.style.display = "block";
+          tooltip.innerHTML = `Path Number:${index}`;
+
+          e.target.addEventListener('click', clickHandler);
+          e.target.addEventListener("keydown",(e)=>{
+
+          })
+        } else {
+          tooltip.style.display = "none";
+        }
+      });
+
+      function clickHandler(e){
+        let selected = document.querySelector('.selected');
+              console.log("here", selected)
+
+              if(selected){
+                //   selected.classList.
+                selected.classList.remove('selected');
+              }
+              e.target.classList.add('selected');
+      }
+    </script>
+  </body>
+</html>

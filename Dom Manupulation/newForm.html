@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="newForm" onsubmit="hehe(event)">
+        Name: <input type="text" name="name" value="Shehzad" id="name">
+        Adress: <input type="text" name="adress" value="Lahore" id="name">
+        <button type="submit">submit</button>
+    </form>
+
+    <script>
+        let newForm = document.getElementById('name');
+        async function hehe(e) {
+            e.preventDefault();
+            await fetch('http://localhost:3000/posts', {
+                method: 'POST',
+                cache:"no-cache",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    file: "Shehzad"
+                })
+            }).then((response)=>response.json()).then((data)=>console.log(data));
+        }
+
+        let arr = [];
+
+
+
+    </script>
+</body>
+</html>

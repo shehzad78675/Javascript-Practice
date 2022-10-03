@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num = 1234;
+        console.log(num);
+
+        console.log(1_000_000);
+
+        console.log(2.3e7);
+
+        console.log(0xff);
+
+        let n = 255;
+        console.log(n.toString(2));
+        console.log(n.toString(8));
+        console.log(n.toString(16));
+
+        console.log((1234567).toString(8));
+        console.log(1234567.234.toString(8));
+
+        console.log(Math.round(12.4));
+        console.log(Math.round(12.5));
+        console.log(Math.trunc(12.5123));
+        console.log(Math.round((12.5123*1000)/1000));
+
+        console.log((12.234).toFixed(4));
+
+        console.log(0.1 + 0.2 == 0.3);
+
+        console.log(0.4 + 0.5 == 0.9);
+
+        console.log(0.2 + 0.2 == 0.4);
+
+        console.log(0.1 + 0.2);
+        console.log(0.1 + 0.2);
+
+        console.log(isNaN(NaN));
+        console.log(isNaN("nah"));
+
+        console.log(isNaN(0));
+
+        console.log(isFinite(NaN));
+
+        console.log(isFinite(2));
+        console.log(NaN == NaN);
+        console.log(isFinite(''));
+
+        console.log(Object.is(1, 1));
+        console.log(Object.is(NaN, NaN));
+        console.log(Object.is(0, -0));
+        console.log(parseInt("123es234"));
+        console.log(parseFloat("123es234"));
+        console.log(parseFloat("123.12s234"));
+        console.log(parseFloat("as234"));
+
+        console.log(Math.random())
+        console.log(Math.floor(Math.random()*100));
+
+        console.log(parseInt("ac12", 16));
+
+        console.log(Math.random(1,7));
+
+        console.log(Math.random()*2);
+
+        function random(a, b){
+            return (a - 0.5 + Math.random() * (b-a+1));
+        }
+
+        console.log(random(2, 4));
+
+    </script>
+</body>
+</html>

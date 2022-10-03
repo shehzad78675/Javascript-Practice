@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let student = {
+            name: "Shehzad",
+            age: 20,
+            isAdmin: false,
+            courses: ['html', 'css', 'javascript']
+        }
+
+        console.log(typeof student);
+        let stringStu = JSON.stringify(student);
+
+        console.log(stringStu);
+
+        console.log(typeof stringStu);
+
+        let parseStu = JSON.parse(stringStu);
+
+        console.log(parseStu);
+        console.log(typeof parseStu);
+
+        console.log(parseStu['courses'][2]);
+
+
+        let student1 = {
+            name: 'Ali',
+            age: 23,
+            courses: ['java', 'c++', 'python'],
+            class: undefined
+        };
+
+        student1.job = "frontend";
+
+        let student1Str = JSON.stringify(student1);
+
+        console.log(student1Str);
+
+        let parseStu1 = JSON.parse(student1Str);
+
+        console.log(parseStu1);
+
+        let room = {
+            number: 123
+        };
+
+        let meetup = {
+            title: 'Conference',
+            participent: ['Hamza', 'Adnan', 'Ijaz']
+        };
+
+        meetup.plase = room;
+        // room.occupiedBy = meetup;
+
+        let str = JSON.stringify(meetup);
+
+        console.log(str);
+
+
+        let room1 = {
+            number: 123
+        };
+
+        let meetup1 = {
+            title: 'Conference',
+            participent: ['Hamza', 'Adnan', 'Ijaz']
+        };
+
+        meetup.plase = room;
+        room.occupiedBy = meetup;
+
+        let str1 = JSON.stringify(meetup, ['title', 'participent', 'plase', 'number'], 2);
+
+        console.log(str1);
+
+        let obje = JSON.parse(str1);
+        console.log(obje);
+
+
+        let room2 = {
+            number: 123
+        };
+
+        let meetup2 = {
+            title: 'Conference',
+            participent: ['Hamza', 'Adnan', 'Ijaz']
+        };
+
+        meetup.plase = room;
+        room.occupiedBy = meetup;
+
+        let str2 = JSON.stringify(meetup, function replecer(key, value){
+            return (key == 'occupiedBy') ? undefined : value;
+        }, 6);
+
+        console.log(str2);
+
+        let obje1 = JSON.parse(str2);
+        console.log(obje1);
+
+
+        let str3 = '{"title":"Conference", "date":"2023-05-17"}';
+
+        let obje3 = JSON.parse(str3);
+
+        console.log(obje3);
+
+        // console.log(obje3.date.getDate());
+
+        let str4 = '{"title":"Conference", "date":"2023-05-17"}';
+
+        let obje4 = JSON.parse(str4, function(key, value){
+            if(key == 'date') return new Date(value);
+            return value;
+        });
+
+        console.log(obje4);
+
+        console.log(obje4.date.getDate());
+
+        let room4 = {
+            number: 23
+            };
+
+            let meetup4 = {
+            title: "Conference",
+            occupiedBy: [{name: "John"}, {name: "Alice"}],
+            place: room4
+            };
+
+            room4.occupiedBy = meetup4;
+            // meetup4.self = meetup4;
+
+            console.log( JSON.stringify(meetup4, function replacer(key, value) {
+                return (key != "" && value == meetup4) ? undefined : value;
+            }));
+    </script>
+</body>
+</html>

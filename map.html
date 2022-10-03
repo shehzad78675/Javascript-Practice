@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let myMap = new Map([['name', "Shehzad"], ['age', 20]]);
+        console.log(myMap);
+
+        myMap.set("salary", 3000);
+        myMap.set([1,2,3,4,5], 'Array');
+
+        myMap.set({name:"Ali", Age: 17, salary: 40000}, "Ali Data");
+
+        // for(let key of myMap){
+        //     console.log(key);
+        // }
+
+        myMap.forEach((value, key)=>{
+            console.log(key, value);
+        })
+
+        console.log(myMap.get('name'));
+
+        myMap.delete('name');
+
+        console.log(myMap.keys());
+
+        console.log(myMap.size);
+
+        console.log(myMap.values());
+
+        console.log(myMap.has('salary'));
+
+        console.log(myMap.entries());
+
+        // console.log(Object.myMap(key));
+
+        const obj = {
+            name: "Hamza",
+            age: 30
+        };
+        for(let value of Object.values(obj)){
+            alert(value);
+        }
+
+        // console.log(myMap.clear());
+        console.log(myMap);
+
+        let prices = {
+            banana: 1,
+            orange: 2,
+            meat: 4
+        };
+
+        let doublePrices = Object.fromEntries(
+            Object.entries(prices).map(entry => [entry[0],
+            entry[1]*2])
+        );
+
+        console.log(doublePrices);
+
+        function sumSalaries(obj){
+            if(obj.size === 0){
+                return 0;
+            }
+            let sum = 0;
+            for(let value of Object.values(obj)){
+                sum += value;
+            }
+            return sum;
+        }
+        let salaries = {
+            "Ali": 100,
+            "Hamza": 300,
+            "Mary": 250
+        }
+
+        let obj1 = {};
+        console.log(sumSalaries(obj1));
+
+        function count(obj){
+            let count=0;
+            for(let values of Object.entries(obj)){
+                count++;
+            }
+            return count;
+        }
+
+        console.log(count(salaries));
+
+        console.log(Object.keys(salaries).length);
+        console.log(salaries.length);
+    </script>
+</body>
+</html>

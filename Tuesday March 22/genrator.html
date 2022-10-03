@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function* makeGenrator(){
+            yield 1;
+            yield 2;
+            yield 3;
+            yield 4;
+        }
+
+        let gen = makeGenrator();
+
+        // console.log(gen.next());
+        // console.log(gen.next());
+        // console.log(gen.next());
+        // console.log(gen.next());
+        // console.log(gen.next());
+
+        console.log(gen);
+
+        let arr = [...makeGenrator()];
+
+        console.log(arr);
+
+        function* genrateSequence(start, end){
+            for(let i=start; i<=end; i++){
+                yield i;
+            }
+        }
+
+
+        function* genratePassword(){
+            yield* genrateSequence(48, 57);
+
+            yield* genrateSequence(65, 90);
+            yield* genrateSequence(97, 122);
+        }
+
+        let str = '';
+
+        for(let code of genratePassword()){
+            str += String.fromCharCode(code);
+        }
+
+        console.log(str);
+
+        function genrator(seed){
+            let value = seed;
+            return function(){
+                value = value * 16807 % 2147483647;
+                return value;
+            }
+        }
+
+        let newGen = genrator(1);
+
+        console.log(newGen());
+        console.log(newGen());
+        console.log(newGen());
+        console.log(newGen());
+        console.log(newGen());
+    </script>
+</body>
+</html>

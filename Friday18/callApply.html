@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const user = {
+        name: "Shehzad",
+        age: 20,
+        Designation: "Software Engineering",
+      };
+
+      function printDetails(city) {
+        console.log(this.name + " " + city);
+      }
+
+      printDetails.call(user, "Bahawalpur");
+
+      const user2 = {
+        name: "Ali",
+        age: 18,
+        Designation: "Software Engineering",
+      };
+
+      printDetails.call(user2, "Lahore");
+
+      const user1 = {
+        name: "Shehzad",
+        age: 20,
+        Designation: "Software Engineering",
+      };
+
+      function printDetails1(city, country) {
+        console.log(this.name + " " + city + " " + country);
+      }
+
+      printDetails1.apply(user1, ["Bahawalpur", "Pakistan"]);
+
+      const user3 = {
+        name: "Ali",
+        age: 18,
+        Designation: "Software Engineering",
+      };
+
+      printDetails1.apply(user3, ["Lahore", "Pakistan"]);
+
+      function slow(x) {
+        // there can be a heavy CPU-intensive job here
+        alert(`Called with ${x}`);
+        return x;
+      }
+
+      function cachingDecorator(func) {
+        let cache = new Map();
+
+        return function (x) {
+          if (cache.has(x)) {
+            // if there's such key in cache
+            alert('from cache')
+            return cache.get(x); // read the result from it
+          }
+
+          let result = func(x); // otherwise call func
+
+          cache.set(x, result); // and cache (remember) the result
+          return result;
+        };
+      }
+
+      slow = cachingDecorator(slow);
+
+      let aaa = cachingDecorator(slow);
+      let bbb = aaa("Mazm")
+      alert(bbb);
+      alert('Again '+bbb);
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding-top: 2rem;
+        }
+
+        .movies{
+            border: 2px solid black;
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+            margin: 2rem;
+            margin-top: 5rem;
+        }
+
+        h1{
+            position: fixed;
+            top: 0rem;
+        }
+
+        select{
+            position: fixed;
+            width: 10rem;
+            top: 5rem;
+        }
+        .heading{
+            background-color: black;
+            height: 3rem;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book My Show</h1>
+
+    <select name="" id="">
+        <option value="none">None</option>
+        <option value="action">Action</option>
+        <option value="romence">Romence</option>
+        <option value="comedy">Comedy</option>
+    </select>
+
+    <div class="movies">
+        <h3 class="heading">Example 1</h3>
+        <p class="price" data-category="action"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 2</h3>
+        <p class="price" data-category="romence"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 3</h3>
+        <p class="price" data-category="comedy"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 4</h3>
+        <p class="price" data-category="romence"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 5</h3>
+        <p class="price" data-category="action"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 6</h3>
+        <p class="price" data-category="comedy"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 7</h3>
+        <p class="price" data-category="action"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 8</h3>
+        <p class="price" data-category="comedy"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 9</h3>
+        <p class="price" data-category="action"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 10</h3>
+        <p class="price" data-category="romence"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 11</h3>
+        <p class="price" data-category="action"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 12</h3>
+        <p class="price" data-category="comedy"></p>
+    </div>
+    <div class="movies">
+        <h3 class="heading">Example 13</h3>
+        <p class="price" data-category="action"></p>
+    </div>
+     
+    <script>
+        let select = document.querySelector('select')
+        let movies = document.querySelectorAll(".movies")
+        
+        select.addEventListener("change", (e) => {
+            let selectValue = select.value;
+            if(selectValue === 'none'){
+                movies.forEach((movie) => {
+                    movie.style.display = 'block';
+                });
+            }else{
+                for(let i=0; i<movies.length; i++){
+                    let pElem = movies[i].querySelector('p');
+                    let movieValue = pElem.getAttribute("data-category");
+
+                    if(movieValue === selectValue)
+                        movies[i].style.display = 'block';
+                    else{
+                        movies[i].style.display = 'none';
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

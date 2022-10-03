@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #main-container{
+            width: 100vw;
+            height: 100vh;
+            background-color: gray;
+        }
+
+        .inner-box{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #myInput{
+            background-color: rgb(54, 54, 54);
+            color: white;
+            border-radius: 7px;
+            font-size: 1.3rem;
+            padding: 10px;
+            margin-top: 7px;
+        }
+        h1, h2{
+            color: white;
+            margin-top: 10px;
+        }
+
+        .mainBtn{
+            margin-top: 15px;
+            padding: 5px;
+            background-color: aqua;
+            width: 75px;
+            height: 40px;
+            border-radius: 5px;
+        }
+        #msg-box{
+            /* border: 2px solid red; */
+            height: 45px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <div class="inner-box">
+            <h1>Welcome To Typing Speed Testing</h1>
+            <div id="msg-box">
+
+                <h2 id="msg"></h2>
+            </div>
+            <textarea name="" id="myInput" cols="100" rows="10" disabled></textarea>
+            <button id="btn" class="mainBtn">Start</button>
+        </div>
+    </div>
+
+    <script>
+
+        let arrayOfSentences = [
+            "He dreamed of leaving his law firm to open a portable dog wash.",
+            "Everyone was busy, so I went to the movie alone.",
+            "He wondered why at 18 he was old enough to go to war, but not old enough to buy cigarettes.",
+            "At that moment I was the most fearsome weasel in the entire swamp."
+        ];
+        let btn = document.getElementById('btn');
+        let myInput = document.getElementById('myInput');
+        let msg = document.getElementById('msg');
+
+        let startTime, endTime;
+
+
+        const playGame = () => {
+            let index = Math.floor(Math.random() * arrayOfSentences.length);
+            let showMessage = arrayOfSentences[index]; 
+            // console.log(showMessage);
+            msg.innerHTML = showMessage;
+
+            let date = new Date();
+            startTime = date.getTime();
+
+            btn.innerText = "Done";
+        }
+
+        const checkCorrectWords = (str1, str2) => {
+            let word1 = str1.split(" ");
+            let word2 = str2.split(" ");
+
+            let count = 0;
+
+            word1.forEach((item, index) => {
+                if(item == word2[index]){
+                    count++;
+                }
+            });
+
+            let errorCount = word1.length - count;
+
+            return ` ${count} correct out of ${word1.length} words and total number of error are ${errorCount}.`;
+        }
+
+        const endGame = () => {
+            let date = new Date();
+            endTime = date.getTime();
+            let timeTaken = (endTime - startTime)/1000;
+
+            let userInput = myInput.value;
+            let wordCount = userInput.split(" ").length;
+
+            let speed = 0;
+
+            if(wordCount != 1){
+
+                speed = Math.round((wordCount/timeTaken) * 60);
+            }
+
+            let returnMessage = `Your typing speed is ${speed} WPM.`;
+
+            returnMessage += checkCorrectWords(msg.innerText, userInput);
+
+            msg.innerHTML = returnMessage;
+            
+        }
+
+        btn.addEventListener('click', function(){
+            if(this.innerText == 'Start'){
+                myInput.disabled = false;
+                myInput.value = "";
+                playGame();
+            }else if(this.innerText == 'Done'){
+                myInput.disabled = true;
+                btn.innerText = 'Start';
+                endGame();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Page</title>
+</head>
+<body>
+    <div class="container" id="print">
+        <h1>Shehzad Muhammad</h1>
+        <p id="para">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, ipsam! Nulla, repudiandae distinctio? Repellat eos perferendis non ipsum nobis, inventore distinctio, voluptatum fugit quam quaerat officiis numquam corporis error aspernatur?</p>
+    </div>
+    <button onclick="takePrint('print')">Take Print</button>
+
+    <script>
+        function takePrint(printPage){
+            let backUp = document.body.innerHTML;
+            let pageContent = document.getElementById(printPage).innerHTML;
+            document.body.innerHTML = pageContent;
+            window.print();
+            document.body.innerHTML = backUp;
+        }
+    </script>
+</body>
+</html>

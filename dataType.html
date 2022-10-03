@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Type</title>
+  </head>
+  <body>
+    <h1>Data Types</h1>
+    <script>
+      let num = -Infinity;
+      num = NaN;
+      num = undefined;
+      console.log(typeof num);
+
+      let fName = "Shehzad";
+      console.log(`Hello, ${fName}`);
+      console.log(!undefined);
+      alert(alert(1) || 2 || alert(3));
+
+      alert(alert(1) && alert(2));
+
+      let userName = prompt("Enter the user name");
+
+      if (userName === "Admin") {
+        let password = prompt("Enter the password");
+        if (password === "TheMaster") {
+          alert("Welcome");
+        } else if (password === " " || password === null) {
+          alert("Canceled");
+        } else {
+          alert("Wrong Password");
+        }
+      } else if (userName === " " || userName === null) {
+        alert("Canceled");
+      } else {
+        alert("I don't know you");
+      }
+
+      let student1 = {
+          name: "shehzad",
+          gender: "other",
+          getName() {
+              return this.name;
+          }
+      };
+      let student2 = student1;
+      let student3 = {...student1};
+      student1.name = "faheem";
+      console.log(student1,student2,student3)
+    </script>
+  </body>
+</html>

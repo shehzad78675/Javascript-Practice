@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="getDataForm" name="my">
+        Name: <input type="text" name="name" id="name">
+        Age: <input type="text" name="age" id="age">
+        Adress: <input type="text" name="adress" id="adress">
+        Salary: <input type="text" name="salary" id="salary">
+        <button type="submit" id="btn">Submit</button>
+    </form>
+
+    <script>
+        let isUpdating = false;
+        let updatingIndex = null;
+        let name = document.getElementById('name');
+        let age = document.getElementById('age');
+        let adress = document.getElementById('adress');
+        let salary = document.getElementById('salary');
+
+        let form = document.forms.my;
+
+        
+
+        let dataBase = [];
+        my.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // console.log('submit');
+
+            let obj = {
+                name: name.value,
+                age: age.value,
+                adress: adress.value,
+                salary: salary.value
+            }
+            dataBase.push(obj);
+            makeTable(dataBase);
+
+            name.value = '';
+            age.value = '';
+            adress.value = '';
+            salary.value = '';
+            // console.log(dataBase);
+        });
+
+        function removeTable(){
+            // console.log('remove run')
+            let tbl = document.querySelector('table');
+            if(tbl) {
+                tbl.parentNode.removeChild(tbl);
+            }
+        }
+
+        function makeTable(dataBase){
+            removeTable();
+
+            let table = document.createElement('table');
+            dataBase.forEach((element, index) => {
+
+                if(index == 0){
+                    let tr = document.createElement('tr');
+                    let th = document.createElement('th');
+                    th.innerHTML = '#';
+                    tr.append(th);
+                    for(let key in element) {
+                        let th = document.createElement('th');
+                        let heading = key;
+                        heading = heading[0].toUpperCase() + heading.slice(1);
+                        th.innerHTML = heading;
+                        tr.append(th);
+                        table.append(tr);
+                    }
+
+                }
+
+                let tr = document.createElement('tr');
+                let td = document.createElement('td');
+                td.innerHTML = index + 1;
+                tr.setAttribute('class', 'tr');
+                tr.append(td);
+
+                for(let key in element){
+                    let td = document.createElement('td');
+                    td.innerHTML = element[key];
+                    tr.append(td);
+                }
+
+                let td1 = document.createElement('td');
+                const btnAttr = {
+                    del: {
+                        innerHTML: "Delete"
+                    },
+                    upd: {
+                        innerHTML: "Update"
+                    }
+                }
+                let dltTextNode = document.createTextNode(btnAttr.del.innerHTML);
+                let updTextNode = document.createTextNode(btnAttr.upd.innerHTML);
+                let btnDlt = document.createElement("button");
+                btnDlt.onclick = ()=>{ dltVal(index) };
+                let btnUpd = document.createElement("button");
+                btnUpd.onclick = () => updVal(index);
+                btnDlt.appendChild(dltTextNode);
+                btnUpd.appendChild(updTextNode);
+                td1.append(btnUpd);
+                td1.append(btnDlt);
+                tr.append(td1);
+                table.append(tr);
+                
+            });
+            // console.log(table);
+            document.body.append(table);
+            table.setAttribute('border', '');
+
+        }
+
+        function dltVal(index){
+            dataBase.splice(index, 1);
+            makeTable(dataBase);
+        }
+        function updVal(index){
+            console.log(dataBase[index]);
+            let values = Object.values(dataBase[index]);
+
+            console.log(values[1]);
+
+            name.value = values[0];
+            age.value = values[1];
+            adress.value = values[2];
+            salary.value = values[3];
+
+            // dataBase[index][name] = name.value;
+            // Object.values(dataBase[index])[1] = age.value;
+            // Object.values(dataBase[index])[2] = adress.value;
+            // Object.values(dataBase[index])[3] = salary.value;
+
+            console.log(dataBase);
+
+            let btn = document.getElementById('btn');
+            btn.innerHTML = "Update";
+
+            btn.addEventListener('click', update);
+
+            function update(e){
+                e.preventDefault();
+                let obj = {
+                name: name.value,
+                age: age.value,
+                adress: adress.value,
+                salary: salary.value
+            }
+                dataBase.splice(index, 1, obj);
+                makeTable(dataBase);
+
+                name.value = '';
+                age.value = '';
+                adress.value = '';
+                salary.value = '';
+
+                // makeTable(dataBase);
+                btn.innerHTML = "Submit";
+                btn.removeEventListener('click', update);
+            }
+           
+            console.log(dataBase);
+        }
+    </script>
+</body>
+</html>

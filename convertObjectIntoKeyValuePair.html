@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function convertObject(obj){
+            let arr = new Array();
+            for(let key in obj){
+                arr.push([key, obj[key]]);
+            }
+            return arr;
+        }
+
+        let obj = {"#FF0000":"red","#00FF00":"green","#FFFFFF":"white"};
+        console.log(obj);
+        console.log(convertObject(obj));
+
+        console.log(obj.valueOf());
+    </script>
+</body>
+</html>

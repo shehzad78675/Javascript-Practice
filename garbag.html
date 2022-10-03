@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let user = {
+            name:"Shehzad",
+            address: {
+                street: "chock"
+            },
+            message(){
+                console.log(`My name is ${this.name}`);
+            }
+        }
+
+        console.log(user.name);
+        let admin = user;
+        user=null;
+        console.log(admin);
+
+        alert(user?.address.street);
+
+        let man = {
+
+        };
+        // let x=0;
+        // man?.sayHi(x++);
+
+        // console.log(x);
+
+        console.log(admin?.message?.());
+
+        let dummy = {
+            name:"Haider",
+            sayHi: function(){
+                console.log("Hi buddy");
+            }
+        }
+
+        dummy.sayHi();
+
+        let num = 2.13421;
+        console.log(num.toFixed(3));
+        console.log(num);
+
+        let str = "helloworld";
+        console.log(str.toUpperCase());
+        console.log(str);
+
+        let zero = new Number(0);
+
+        console.log(typeof zero);
+
+        console.log(Boolean(zero));
+
+        let str1 = "hello";
+        str1.test = 5;
+
+        console.log(str1.test);
+    </script>
+</body>
+</html>

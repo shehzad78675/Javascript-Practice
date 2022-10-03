@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="getBtn">Get data</button>
+    <button id="postBtn">Post data</button>
+
+    <Script>
+        let getBtn = document.getElementById("getBtn");
+        getBtn.addEventListener('click', xhrFunctionRun);
+
+        function xhrFunctionRun(){
+            let xhr = new XMLHttpRequest();
+
+            xhr.open('GET', 'https://jsonplaceholder.typicode.com/todos/', true);
+
+            xhr.onload = function(){
+                console.log(JSON.parse( xhr.responseText));
+            }
+
+            xhr.send();
+        }
+    </Script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="getFile" onsubmit="submitMethod(event)">
+        <input type="file" name="" id="file">
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function submitMethod(event) {
+            event.preventDefault();
+            let file = document.getElementById("file");
+            console.log('files', file.files)
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                console.log('result is: ',reader.result);
+            }
+            reader.readAsDataURL(file.files[0])
+        }
+    </script>
+</body>
+</html>

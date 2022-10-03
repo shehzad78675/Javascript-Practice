@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container{
+            height: 100vh;
+            width: 100vw;
+            border: 2px solid black;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .list{
+            border: 2px solid black;
+            height: 100vh;
+            width: 24vw;
+            margin: 5px;
+            background-color: gray;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .card{
+            background-color: white;
+            padding: 9px;
+            box-shadow: 2px 2px 5px rgb(113, 133, 133);
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        h1{
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="list">
+            <h1>Todo List</h1>
+            <hr>
+            <div class="card" draggable="true">
+                <div class="title"><h2>Card 1</h2></div>
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos deleniti voluptatem aliquid quia incidunt dolores amet quae esse eius neque necessitatibus omnis iste placeat odio, nesciunt consequatur possimus corrupti veritatis quos distinctio optio. Quo maiores aliquid libero totam sequi.</p>
+                </div>
+            </div>
+        
+            <div class="card" draggable="true">
+                <div class="title"><h2>Card 2</h2></div>
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos deleniti voluptatem aliquid quia incidunt dolores amet quae esse eius neque necessitatibus omnis iste placeat odio, nesciunt consequatur possimus corrupti veritatis quos distinctio optio. Quo maiores aliquid libero totam sequi.</p>
+                </div>
+            </div>
+            <div class="card" draggable="true">
+                <div class="title"><h2>Card 3</h2></div>
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos deleniti voluptatem aliquid quia incidunt dolores amet quae esse eius neque necessitatibus omnis iste placeat odio, nesciunt consequatur possimus corrupti veritatis quos distinctio optio. Quo maiores aliquid libero totam sequi.</p>
+                </div>
+            </div>
+        </div>
+         
+        <div class="list">
+            <h1>In Progress</h1>
+            <hr>
+            <div class="card" draggable="true">
+                <div class="title"><h2>Card 4</h2></div>
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos deleniti voluptatem aliquid quia incidunt dolores amet quae esse eius neque necessitatibus omnis iste placeat odio, nesciunt consequatur possimus corrupti veritatis quos distinctio optio. Quo maiores aliquid libero totam sequi.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list">
+            <h1>In Review</h1>
+            <hr>
+            <div class="card" draggable="true">
+                <div class="title"><h2>Card 5</h2></div>
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos deleniti voluptatem aliquid quia incidunt dolores amet quae esse eius neque necessitatibus omnis iste placeat odio, nesciunt consequatur possimus corrupti veritatis quos distinctio optio. Quo maiores aliquid libero totam sequi.</p>
+                </div>
+            </div>
+        
+            <div class="card" draggable="true">
+                <div class="title"><h2>Card 6</h2></div>
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos deleniti voluptatem aliquid quia incidunt dolores amet quae esse eius neque necessitatibus omnis iste placeat odio, nesciunt consequatur possimus corrupti veritatis quos distinctio optio. Quo maiores aliquid libero totam sequi.</p>
+                </div>
+            </div>
+        </div>
+        <div class="list">
+            <h1>Done</h1>
+            <hr>
+            <div class="card" draggable="true">
+                <div class="title"><h2>Card 7</h2></div>
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos deleniti voluptatem aliquid quia incidunt dolores amet quae esse eius neque necessitatibus omnis iste placeat odio, nesciunt consequatur possimus corrupti veritatis quos distinctio optio. Quo maiores aliquid libero totam sequi.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cards = document.querySelectorAll('.card');
+        let lists = document.querySelectorAll('.list');
+
+        function dragTheCard(card){
+            card.addEventListener('dragstart', (e) => {
+                card.classList.add('draging');
+            });
+
+            card.addEventListener('dragend', (e) => {
+                card.classList.remove('draging');
+            });
+
+        }
+
+        function getDragAfterElement(list, y){
+            let allCards = [...list.querySelectorAll('.card:not(.draging)')];
+
+            return allCards.reduce((closestCard, nextCard) => {
+                    let nextCardRect = nextCard.getBoundingClientRect();
+                    let offset = y - nextCardRect.top - nextCardRect.height / 2;
+                    if(offset < 0 && offset > closestCard.offset){
+                        return {offset, element: nextCard};
+                    }else{
+                        return closestCard;
+                    }
+                }, {offset: Number.NEGATIVE_INFINITY}).element;
+        }
+
+        cards.forEach(card => {
+            dragTheCard(card);
+        });
+
+        lists.forEach(list => {
+            list.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                let afterElement = getDragAfterElement(list, e.clientY);
+                let dragable = document.querySelector('.draging');
+
+                if(afterElement == null){
+                    list.append(dragable);
+                }else{
+                    list.insertBefore(dragable, afterElement);
+                }
+
+            });
+        });
+    </script>
+</body>
+</html>

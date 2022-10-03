@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        console.log(Math.floor(Math.random() * 100));
+
+        function reverseString(str){
+            let start = 0;
+            let end = str.length - 1;
+
+            while(start < end){
+                let temp = str[start];
+                str.replace(str[start], str[end]);
+                str.replace([end], temp);
+                console.log(temp);
+                start++;
+                end--;
+            }
+            return str;
+        }
+
+        let str = "Shehzad";
+        str[0] = "A";
+        console.log(str);
+        console.log(reverseString(str));
+    </script>
+</body>
+</html>

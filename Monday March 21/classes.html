@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class User {
+            constructor(name){
+                thie.name = name;
+            }
+            sayHi(){
+                console.log(this.name);
+            }
+        }
+
+        console.log(typeof User);
+
+        let newUser = class {
+            constructor(name, age, salary){
+                this.name = name;
+                this.age = age;
+                this.salary = salary;
+            }
+
+            printDetails = () => {
+                console.log(`I am ${this.name} and my age is ${this.age}`);
+            }
+        }
+
+        let user = new newUser('Shehzad', 20, 4000);
+
+        let detail = user.printDetails;
+        detail();
+
+
+        class Clock {
+            constructor({template}){
+                this.template = template;
+            }
+
+            render(){
+                let date = new Date();
+
+                let hours = date.getHours();
+                if(hours < 10) hours = '0' + hours;
+
+                let min = date.getMinutes();
+                if(min < 10) min = '0' + min;
+
+                let sec = date.getSeconds();
+                if(sec < 10) sec = '0' + sec;
+
+                let output = this.template.replace('h', hours).replace('m', min).replace('s', sec);
+
+                console.log(output);
+            }
+
+            stop(){
+                clearInterval(this.timer);
+            }
+
+            start(){
+                this.render();
+                this.timer = setInterval(() => this.render(), 1000);
+            }
+        }
+
+        let clock = new Clock({template : 'h:m:s'});
+        clock.start();
+    </script>
+</body>
+</html>

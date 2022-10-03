@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="getDataForm" name="my">
+        Name: <input type="text" name="name" id="name">
+        Age: <input type="text" name="age" id="age">
+        Adress: <input type="text" name="adress" id="adress">
+        Salary: <input type="text" name="salary" id="salary">
+        <button type="submit" id="btn">Submit</button>
+    </form>
+
+    <script>
+        let name = document.getElementById('name');
+        let age = document.getElementById('age');
+        let adress = document.getElementById('adress');
+        let salary = document.getElementById('salary');
+
+        let table = document.createElement('table');
+
+
+        let my = document.forms.my;
+
+        let count = 0;
+
+        let dataBase = [];
+        my.addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log('submit');
+
+            let obj = {
+                name: name.value,
+                age: age.value,
+                adress: adress.value,
+                salary: salary.value
+            }
+            // console.log(obj);
+            dataBase.push(obj);
+            makeTable(dataBase);
+
+            console.log(dataBase);
+
+            // let deleteBtn = document.querySelectorAll('.deleteBtn');
+            // deleteBtn.forEach(element => {
+            //     element.addEventListener('click', (e) => {
+            //         console.log(dataBase);
+            //         debugger
+            //         console.log('delete run');
+            //         let parent = element.parentElement.parentElement;
+            //         console.log(parent);
+            //         console.log(parent.firstElementChild.innerHTML);
+            //         let index = parent.firstElementChild.innerHTML - 1;
+            //         console.log(dataBase[index]);
+            //         console.log('before', dataBase);
+            //         dataBase.splice(index, 1)
+            //         console.log('after', dataBase);
+            //         // console.log(parent.firstElementChild);
+            //         parent.remove();
+            //     });
+            // });
+        });
+
+        function makeTable(dataBase){
+
+            let tables = document.getElementsByTagName("table");
+            // debugger
+            if(tables.length){
+                for(let i=0;i<tables.length;i++){
+
+                    console.log("Before",tables[i]);
+                    // tables[i].remove(); 
+                    tables[i].removeChild();
+                    console.log("After",tables[i]); 
+                }
+            }
+            
+            dataBase.forEach((element, index) => {
+                // if(count == 0){
+
+                    if(index == 0){
+                        let tr = document.createElement('tr');
+                        let th = document.createElement('th');
+                        th.innerHTML = '#';
+                        tr.append(th);
+                        for(let key in element) {
+                            let th = document.createElement('th');
+                            let heading = key;
+                            heading = heading[0].toUpperCase() + heading.slice(1);
+                            th.innerHTML = heading;
+                            tr.append(th);
+                            table.append(tr);
+                        }
+
+                    }
+                // }
+            
+                // if(index == count){
+
+                    let tr = document.createElement('tr');
+                    let td = document.createElement('td');
+                    td.innerHTML = index + 1;
+                    tr.setAttribute('class', 'tr');
+                    tr.append(td);
+
+                    for(let key in element){
+                        let td = document.createElement('td');
+                        td.innerHTML = element[key];
+                        tr.append(td);
+                    }
+
+                    // let td2 = document.createElement('td');
+                    let td1 = document.createElement('td');
+                    // td2.innerHTML = `<button class="deleteBtn">Delete</button>`
+                    // tr.append(td2);
+                    // td1.innerHTML = '<button class="updateBtn">Update</button>'
+                    const btnAttr = {
+                        del: {
+                            click: () => {dltVal(index)},
+                            innerHTML: "Delete"
+                        },
+                        upd: {
+                            click: "",
+                            innerHTML: "Update"
+                        }
+                    }
+
+                    let dltTextNode = document.createTextNode(btnAttr.del.innerHTML);
+                    let updTextNode = document.createTextNode(btnAttr.upd.innerHTML);
+                    let btnDlt = document.createElement("button");
+                    btnDlt.onclick = ()=>{ dltVal(index) };
+                    let btnUpd = document.createElement("button");
+                    btnDlt.appendChild(dltTextNode);
+                    btnUpd.appendChild(updTextNode);
+                    td1.append(btnUpd);
+                    td1.append(btnDlt);
+                    tr.append(td1);
+                    table.append(tr);
+                 
+                });  // count++;
+            // }
+            // });
+            console.log(table);
+            document.body.append(table);
+            table.setAttribute('border', '');
+
+        }
+
+
+        function dltVal(index){
+            dataBase.splice(index, 1);
+            debugger
+            makeTable(dataBase);
+        }
+
+    </script>
+</body>
+</html>

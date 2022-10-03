@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div, .edit{
+            border: 2px solid black;
+            height: 200px;
+            width: 300px;
+        }
+        .edit{
+            border: 2px solid blue;
+        }
+        div:focus{
+            border-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div tabindex="1" id="editable">Text</div>
+
+    <script>
+        let editable = document.querySelector('#editable');
+        let value = editable.innerHTML;
+        let textarea = document.createElement('textarea');
+        textarea.classList.add('edit');
+        textarea.value = value;
+
+        console.log(value);
+        editable.onfocus = function(){
+            console.log('on focus run');
+            
+            editable.replaceWith(textarea);
+            textarea.focus();
+
+            textarea.onkeydown = function(e){
+                if(e.key == 'Enter'){
+
+                    textarea.blur();
+                }
+            }
+        }
+
+        
+        textarea.onblur = function(){
+            console.log('blur run');
+            let value = textarea.value;
+            textarea.replaceWith(editable);
+            editable.innerHTML = value;
+        }
+    </script>
+</body>
+</html>

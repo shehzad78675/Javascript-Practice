@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let reg = /shehzad/;
+
+        let str = "Hi' I am shehzad and shehzad studies in iub";
+
+        console.log("simple");
+        let result = reg.exec(str);
+        let result2 = reg.exec(str);
+        console.log(result);
+        console.log(result2);
+
+        console.log(reg.test(str));
+        console.log(str.match(reg));
+        console.log(str.match(reg));
+        console.log(str.search(reg));
+        console.log(str.search(reg));
+        console.log(str.replace(reg, "hamza"));
+
+        reg = /shehzad/g;
+
+        console.log("");
+        console.log("With global flag")
+        result = reg.exec(str);
+        result2 = reg.exec(str);
+        console.log(result);
+        console.log(result2);
+
+        console.log(reg.exec(str));
+
+        console.log(reg.test(str));
+        console.log(str.match(reg));
+        // console.log(reg.match(str));
+        console.log(str.search(reg));
+        console.log(str.search(reg));
+        console.log(str.replace(reg, "ali"));
+
+        console.log("");
+        str = "Hi' I am ShehzaD and ShehZad studies in iub";
+
+        result = reg.exec(str);
+        console.log(result);
+
+
+        reg = /shehzad/i;
+
+        str = "Hi' I am ShehzaD and ShehZad studies in iub";
+
+        console.log("");
+        console.log("with insensitive case flag");
+        result = reg.exec(str);
+        result2 = reg.exec(str);
+        console.log(result);
+        console.log(result2);
+
+        console.log(reg.test(str));
+        console.log(str.match(reg));
+        console.log(str.search(reg));
+        console.log(str.replace(reg, "adnan"));
+
+
+        reg = /shehzad/gi;
+
+        str = "Hi' I am ShehzaD and ShehZad studies in iub";
+
+        console.log("");
+        console.log("with global and insensitive case flag");
+        result = reg.exec(str);
+        result2 = reg.exec(str);
+        console.log(result);
+        console.log(result2);
+
+        reg = /shehzad/ig;
+
+        str = "Hi' I am ShehzaD and ShehZad studies in iub";
+
+        console.log("");
+        console.log("with insensitive case and global flag");
+        result = reg.exec(str);
+        result2 = reg.exec(str);
+        console.log(result);
+        console.log(result2);
+
+        console.log("");
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function printName(name, callback){
+            setTimeout(() => {
+                // console.log("Inside set tome out");
+                callback(name);
+                // return name;
+            }, 2000);
+        }
+
+        console.log("Start");
+        // let na = printName("Shehzad");
+        let na = printName("Shehzad", (na) => console.log(na));
+        console.log(na);
+        console.log("End");
+    </script>
+</body>
+</html>

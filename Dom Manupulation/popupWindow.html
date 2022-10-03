@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button value="open" id="openBtn">Open Popup</button>
+    <button value="close" id="closeBtn">Close Popup</button>
+
+    <script>
+        let openBtn = document.getElementById('openBtn');
+        let closeBtn = document.getElementById('closeBtn');
+
+        let newWindow;
+
+        openBtn.onclick = () => {
+            newWindow = window.open('https://www.google.com', '_blank', 'width=400, height=400 top=300, left=300');
+        }
+
+        closeBtn.onclick = () => {
+            newWindow.close();
+        }
+    </script>
+</body>
+</html>

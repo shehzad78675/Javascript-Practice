@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Say Hi</button>
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+
+    <button id="btn">hide me</button>
+    <script>
+        let btn = document.querySelector("button");
+
+        btn.addEventListener('click', function(){
+            let newElem = document.createElement('div');
+            newElem.innerText = "Hello!";
+
+            let body = document.querySelector('body');
+            body.appendChild(newElem);
+        });
+
+        let ul = document.querySelector('ul');
+        let li = document.querySelectorAll('li');
+
+        let fiveElem = li[4];
+
+        let newLi = document.createElement("li");
+        newLi.innerText = '5';
+
+        ul.insertBefore(newLi, fiveElem);
+
+        let btn1 = document.getElementById('btn');
+
+        btn1.addEventListener('click', function(){
+            btn1.hidden = true;
+        })
+    </script>
+</body>
+</html>

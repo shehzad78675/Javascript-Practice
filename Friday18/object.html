@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {
+            name: "shehzad",
+            age: 30,
+            salary: 2000
+        };
+
+        console.log('name' in obj);
+
+        const user = {};
+        user.name = "John";
+        console.log(user);
+        user.surname = 'Smith';
+        console.log(user);
+        user.name = 'Pete';
+        console.log(user);
+        delete user.name;
+        console.log(user);
+
+        function isEmpty(obj){
+            if(Object.keys(obj).length === 0){
+                return true;
+            }
+            return false;
+        }
+
+        let obj1 = {};
+        console.log(isEmpty(obj1));
+        console.log(isEmpty(user));
+
+        function sumValues(obj){
+            if((typeof obj) != Object){
+                return 0;
+            }
+            let sum=0;
+            for(let value of Object.values(obj)){
+                sum += value;
+            }
+            return sum;
+        }
+
+        let salaries = {
+            John: 100,
+            Ann: 160,
+            Pete: 130
+        };
+        let obj12;
+        console.log(sumValues(obj12));
+
+
+        function multiplyNumeric(obj){
+            for(let key in obj){
+                if((typeof obj[key]) === 'number'){
+                    obj[key] = obj[key] * 2;
+                }
+            }
+        }
+        let menu = {
+            width: 200,
+            height: 300,
+            title: "My menu"
+        };
+
+        let {...menu2} = menu;
+        console.log(menu);
+        let menu1 = menu;
+        multiplyNumeric(menu);
+        console.log(menu);
+
+        console.log(menu1);
+
+        delete menu['width'];
+
+        console.log(menu);
+        console.log(menu1);
+
+        console.log(menu2);
+
+        let newObj = {
+            name: "Shehzad",
+            age: 30,
+            sayHi(){
+                console.log(`Hi, ${this.name}`);
+            }
+        }
+
+        let name = 'Ali';
+        console.log(newObj);
+        newObj.sayHi();
+
+        function makeUser(){
+            return this;
+        }
+
+        makeUser();
+
+        let calculator = {
+            read(){
+                this.a = +prompt("Enter a");
+                this.b = +prompt("Enter b");
+            },
+
+            sum(){
+                return this.a + this.b;
+            },
+            mul(){
+                return this.a * this.b;
+            }
+        };
+
+        calculator.read()
+        console.log(calculator.sum());
+        console.log(calculator.mul());
+
+
+        function Accumulator(startingValue){
+            this.value = startingValue;
+            this.read = function(){
+                let newVal = +prompt('Enter value');
+                this.value += newVal;
+            }
+        }
+
+        let accumulator = new Accumulator(1);
+
+        accumulator.read();
+        accumulator.read();
+        accumulator.read();
+
+        console.log(accumulator.value);
+
+        
+    </script>
+</body>
+</html>

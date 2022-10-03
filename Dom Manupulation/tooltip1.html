@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .first{
+            border: 2px solid black;
+            width: 400px;
+            height: 300px;
+        }
+        .tooltip{
+            background-color: black;
+            border-radius: 3px;
+            color: white;
+            display: none;
+            padding-left: 7px;
+            padding-right: 7px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="first"></div>
+    <span id="tooltip" class="tooltip"></span>
+
+    <script>
+        let div = document.querySelector('div');
+        let tooltip = document.getElementById('tooltip');
+        tooltip.style.position = 'absolute';
+
+        div.addEventListener('mousemove', (e) => {
+            tooltip.style.display = 'block';
+            // console.log("x " + e.offsetX);
+            // console.log("y " + e.offsetY);
+            tooltip.style.top = e.offsetY -10 +"px" ;
+            tooltip.style.left = e.offsetX+ 10 +"px";
+
+            tooltip.innerText = `x-axis: ${e.offsetX}, y-axis: ${e.offsetY}`;
+        }) 
+
+        div.addEventListener('mouseout', () => {
+            tooltip.style.display = 'none';
+        })
+    </script>
+</body>
+</html>

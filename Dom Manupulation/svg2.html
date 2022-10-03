@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        /* border: 2px solid black; */
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .half {
+        /* border: 2px solid black; */
+        width: 50%;
+      }
+      textarea {
+        width: 100%;
+        height: 100%;
+        font-size: 2rem;
+      }
+
+      .output {
+        padding: 2rem;
+        font-size: 2rem;
+      }
+
+      .tooltip {
+        border: 3px solid black;
+        width: auto;
+        height: auto;
+        background-color: white;
+        color: black;
+        display: none;
+      }
+
+      .selected {
+        fill: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="half">
+        <textarea name="" id=""></textarea>
+      </div>
+      <div class="half output"></div>
+    </div>
+
+    <div class="tooltip"></div>
+    <script>
+      let textarea = document.querySelector("textarea");
+      let output = document.querySelector(".output");
+      let tooltip = document.querySelector(".tooltip");
+      tooltip.style.position = "absolute";
+
+      let pathArr = [];
+      textarea.addEventListener("input", (e) => {
+        output.innerHTML = textarea.value;
+        pathArr = output.querySelectorAll("path");
+      });
+
+      output.addEventListener("mousemove", (e) => {
+        // console.log(pathArr);
+
+        let tagName = e.target.tagName;
+        // console.log(tagName);
+        if (tagName == "path") {
+          let index;
+          const d_value = e.target.getAttribute("d");
+          pathArr.forEach((item, ind) => {
+            const dVal = item.getAttribute("d");
+            if (dVal === d_value) {
+              index = ind;
+            }
+          });
+
+          tooltip.style.display = "block";
+          tooltip.style.top = e.clientY - 10 + "px";
+          tooltip.style.left = e.clientX + 10 + "px";
+
+          tooltip.innerHTML = "Number of path tag " + index;
+        } else {
+          tooltip.style.display = "none";
+        }
+
+        e.target.addEventListener("click", clickHandler);
+        e.target.addEventListener("dblclick", removeHandler);
+      });
+
+      function clickHandler(e) {
+          if(e.target.tagName != 'path') return;
+          if(e.ctrlKey){
+              console.log('ctrl run');
+            toggleSelect(e);
+          }else{
+            singleSelect(e)
+          }
+    }
+
+    function toggleSelect(e){
+        e.target.classList.add('selected');
+    }
+    
+    function singleSelect(e){
+          let selected = document.querySelectorAll(".selected");
+          if (selected) {
+            selected.forEach((item) => {
+              item.classList.remove("selected");
+            });
+          }
+          e.target.classList.add("selected");
+
+      }
+
+      function removeHandler(e){
+          if(e.target.tagName != 'path') return;
+        let selected = document.querySelectorAll(".selected");
+          if (selected) {
+            selected.forEach((item) => {
+              item.classList.remove("selected");
+            });
+          }
+      }
+    </script>
+  </body>
+</html>

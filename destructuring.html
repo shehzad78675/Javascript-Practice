@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let student = {
+            name: "Shehzad",
+            age: 20,
+            semester: 5,
+            CGPA: 3.6,
+            information: function(){
+                console.log(`My name is ${name} and my age is ${age}`);
+            }
+        }
+
+        const {name, age, ...semester} = student;
+        console.log(name, age, semester);
+
+        let arr = [1,2,3,4,5,6,7,8];
+        [a, b, , c, ...d] = arr;
+
+        console.log(a, b, c, d);
+
+        let user = {};
+
+        [user.name, user.surname] = "Shehzad Muhammad".split(' ');
+        console.log(user,name, user.surname);
+
+        let user1 = {
+        name: "John",
+        age: 30
+        };
+
+        // loop over keys-and-values
+        for (let [key, value] of Object.entries(user1)) {
+        console.log(`${key}:${value}`); // name:John, then age:30
+        }
+
+        let newMap = new Map();
+        newMap.set('name1', 'shehzad');
+        newMap.set('age1', 30);
+        console.log(newMap);
+
+        let option = {
+            size: {
+                height: 100,
+                width: 200
+            },
+            items: ["Cake", "Donut"],
+            title: 'menu'
+        };
+
+        let {
+            size:{
+                width,
+                height: h
+            },
+            items: [item1, item2],
+            title
+        } = option;
+
+        console.log(width, h, item1, item2, title);
+
+
+        let user2 = {
+            name1: "Adnan",
+            years: 30
+        };
+
+        let {name1, years:age1, isAdmin=false} = user2;
+
+        console.log(name1, age1, isAdmin);
+
+        function maxValue(obj){
+            if(Object.keys(obj).length === 0){
+                return null;
+            }
+            let max = 0;
+            let name1 = null;
+            for(let [key, value] of Object.entries(obj)){
+                if(value > max){
+                    max=value;
+                    name1 = key;
+                }
+            }
+            return name1;
+        }
+        let salaries = {
+            "John": 100,
+            "Pete": 300,
+            "Mary": 250
+        };
+
+        let dummy = {"John": 100};
+        console.log(maxValue(salaries));
+
+        
+
+    </script>
+</body>
+</html>

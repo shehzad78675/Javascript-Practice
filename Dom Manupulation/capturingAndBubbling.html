@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .orange{
+            background-color: orange;
+            width: 400px;
+            height: 300px;
+        }
+
+        .blue{
+            background-color: blue;
+            width: 300px;
+            height: 250px;
+            margin: auto;
+        }
+
+        .yellow{
+            background-color: yellow;
+            width: 200px;
+            height: 200px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="orange">
+        <div class="blue">
+            <div class="yellow"></div>
+        </div>
+    </div>
+
+    <script>
+        let orange = document.querySelector('.orange');
+        let yellow = document.querySelector('.yellow');
+        let blue = document.querySelector('.blue');
+
+        orange.addEventListener('click', (e) => {
+            // alert('orange');
+            alert(e.eventPhase)
+            // console.log("kajsh")
+            // e.stopPropagation();
+        });
+
+        blue.addEventListener('click', (e) => {
+            // alert('blue');
+            // alert(e.eventPhase);
+            // console.log(e.target, e.currentTarget);
+            // e.stopPropagation();
+            console.log('hello')
+            
+        });
+
+        yellow.addEventListener('click', (e) => {
+            // alert('yellow');
+            // alert(e.eventPhase);
+        });
+    </script>
+</body>
+</html>

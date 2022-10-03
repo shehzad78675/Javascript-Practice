@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let student = {
+            name: 'Umer',
+            age: 32,
+            details: function(){
+                console.log(`Student name is ${this.name} and student age is ${this.age}`);
+            }
+        };
+
+        student.details();
+
+        let newDetail = student.details;
+        newDetail();
+
+        let detail = student.details.bind(student);
+        detail();
+
+        let user = {
+            name: "Hamza",
+            age: 12
+        };
+
+        let userDetail = student.details.bind(user);
+        userDetail();
+
+        function information(){
+            console.log(`My name is ${this.name} and my age is ${this.age}`);
+        }
+
+        let myInformation = information.bind(user);
+        myInformation();
+
+        // function tem(){
+        //     console.log(this);
+        // }
+
+        // let sum = {
+        //     g: tem.bind(null)
+        // };
+
+        // sum.g();
+
+        function f(){
+            console.log(this.name);
+        }
+
+        f = f.bind({name: "Ali"}).bind({name: "Adnan"});
+        f();
+
+        
+
+        function askPassword(ok, fail) {
+        let password = prompt("Password?", '');
+        if (password == "rockstar") ok();
+        else fail();
+        }
+
+        let user1 = {
+            name: 'John',
+
+            loginOk() {
+                alert(`${this.name} logged in`);
+            },
+
+            loginFail() {
+                alert(`${this.name} failed to log in`);
+            },
+
+        };
+
+        askPassword(user1.loginOk, loginFail.bind(user1));
+    </script>
+</body>
+</html>

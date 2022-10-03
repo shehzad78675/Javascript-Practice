@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        try{
+            shehx;
+        }catch(err){
+            console.log(err.name);
+            console.log(err.message);
+            console.log(err.stack);
+        }
+
+        try{
+            setTimeout(() => {
+                console.log("check");
+            }, 1000);
+        }catch(err){
+            console.log("Error occured");
+        }
+
+        setTimeout(() => {
+            try{
+                lllll;
+            }catch(err){
+                console.log("Error Occured");
+            }
+        }, 1000);
+
+
+        let json = '{"age" : 30}';
+
+        try{
+            let user = JSON.parse(json);
+            console.log(user.name);
+        }catch(err){
+            console.log("Doesn't execute");
+        }
+
+        try{
+            let user = JSON.parse(json);
+            if(!user.name){
+                throw new SyntaxError("Incomplete data : no name");
+            }
+        }catch(err){
+            console.log(err.message);
+        }
+
+        function readData(){
+            let json = '{"age" : 30}';
+
+            try{
+                balabala();
+            }catch(err){
+                if(!(err instanceof SyntaxError)){
+                    throw err;
+                }
+            }
+        }
+
+        try{
+            readData();
+        }catch(err){
+            console.log("External catch got " + err);
+        }
+
+        function fib(n){
+            if(n < 0 || Math.trunc(n) != n){
+                throw new Error("Please enter enter non negative number")
+            }
+            return (n <= 1) ? n : fib(n-1) + fib(n - 2);
+        }
+
+        let n = +prompt("Enter number ?");
+
+        let diff, result;
+        let start = Date.now();
+        try{
+            result = fib(n);
+        }catch(err){
+            result = 0;
+        }finally{
+            diff = Date.now() - start;
+        }
+        console.log("Result " + result);
+        console.log("Time " + diff);
+
+
+        class ValidationError extends Error{
+            constructor(message){
+                super(message);
+                this.name = "ValidationError";
+            }
+        }
+
+        function test(){
+            throw new ValidationError("Whoops!");
+        }
+
+        try{
+            test();
+        }catch(err){
+            console.log(err.name);
+            console.log(err.message);
+            console.log(err.stack);
+        }
+
+        function readUser(json){
+            let user = JSON.parse(json);
+
+            if(!user.name){
+                throw new ValidationError("No field: name")
+            }
+
+            if(!user.age){
+                throw new ValidationError("No field: age");
+            }
+
+            return user;
+        }
+
+        try{
+            let user = readUser('{"age": 30}');
+        }catch(err){
+            if(err instanceof ValidationError){
+                console.log("Invalid data " + err.message);
+            }else if(err instanceof SyntaxError){
+                console.log("Syntax error occured");
+            }else{
+                throw err;
+            }
+        }
+
+    </script>
+</body>
+</html>

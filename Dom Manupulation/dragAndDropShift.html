@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .first{
+            border: 2px solid black;
+            width: 600px;
+            height: 500px;
+        }
+        #drag{
+            border: 2px solid black;
+            width: 50px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="first">
+
+        <div id="drag"></div>
+    </div>
+
+    <script>
+        drag.onmousedown = function(e){
+            console.log('down');
+            drag.style.position = "relative";
+            drag.style.zIndex = 1000;
+
+            let shiftX = e.clientX - drag.getBoundingClientRect().left;
+            let shiftY = e.clientY - drag.getBoundingClientRect().top;
+            function moveAt(pageX, pageY){
+                drag.style.left = pageX - shiftX + 'px';
+                drag.style.top = pageY - shiftY + 'px';
+    
+            }
+
+            moveAt(e.pageX, e.pageY);
+
+            function onMouseMove(e){
+                moveAt(e.pageX, e.pageY);
+            }
+
+            document.addEventListener('mousemove', onMouseMove);
+
+            drag.onmouseup = function(){
+                document.removeEventListener('mousemove', onMouseMove);
+                drag.onmouseup = null;
+            }
+
+            drag.ondragstart = function(){
+                return false;
+            }
+        }
+
+        
+
+
+
+    </script>
+</body>
+</html>

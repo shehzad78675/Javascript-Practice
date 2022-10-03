@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let myMap = new Map([['name', 'Shehzad'], ['age', 21]]);
+        console.log(myMap);
+
+        myMap.set('salaries', 30000);
+        console.log(myMap);
+
+        let num = [1,2];
+        myMap.set(num, 'array');
+        console.log(myMap);
+
+        console.log(myMap.get(num));
+
+        myMap.set('1', 'str1')
+                .set(1, 'num1')
+                .set(true, 'bool');
+        
+        console.log(myMap);
+
+        for(let [key, value] of myMap){
+            console.log(key, value);
+        }
+
+        console.log(myMap.entries());
+
+        console.log(myMap.values());
+
+        console.log(myMap.keys());
+
+        console.log(myMap.size);
+
+        console.log(myMap.has(num));
+
+        console.log(myMap.has('str'));
+
+        myMap.delete(1);
+
+        console.log(myMap.size);
+
+        for(let value of myMap.keys()){
+            console.log(value);
+        }
+
+        for(let [key, value] of myMap.entries()){
+            console.log(key, value);
+        }
+
+        myMap.forEach((key, value) => {
+            console.log(key, value);
+        });
+
+        let obj = {
+            name: 'Shehzad',
+            age: 20
+        }
+
+        let map = new Map(Object.entries(obj));
+
+        console.log(map);
+
+        let obj1 = Object.fromEntries(myMap);
+
+        console.log(obj1);
+
+        let obj2 = Object.fromEntries(myMap.entries());
+
+        console.log(obj2);
+
+        console.log(obj2['1,2']);
+
+        let set = new Set();
+
+        let she = {name: "Shehzad"};
+        let ali = {name: "Ali"};
+        let ham = {name: "Hamza"};
+
+        set.add(she);
+        set.add(ali);
+        set.add(ham);
+
+        console.log(set.values());
+
+        console.log(set);
+
+        console.log(set.size);
+
+        console.log(set.delete(she));
+
+        console.log(set);
+
+        function unique(arr){
+            let set = new Set();
+            for(let value of arr){
+                set.add(value);
+            }
+            return set;
+        }
+
+        
+        let arr = [1,1,2,2,2,3,4,5,5,6];
+        console.log(arr);
+        console.log(unique(arr));
+
+        let values = ["Hare", "Krishna", "Hare", "Krishna",
+        "Krishna", "Krishna", "Hare", "Hare", ":-O"];
+
+        console.log(values);
+        console.log(unique(values));
+
+        console.log(Array.from(new Set(values)));
+
+        let arr1 = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+        console.log(arr1);
+
+
+        function aclean(arr){
+            let map = new Map();
+            for(let value of arr){
+                let sorted = value.toLowerCase().split('').sort().join('');
+
+                map.set(sorted, value);
+            }
+            return Array.from(map.values());
+        }
+
+        console.log(aclean(arr1));
+    </script>
+</body>
+</html>

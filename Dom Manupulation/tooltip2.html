@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height: 400px;
+            width: 500px;
+            border: 2px solid black;
+        }
+        .tooltip{
+            border: 1px solid black;
+            width: 80px;
+            height: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="tooltip"></div>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas placeat voluptatem quisquam ducimus necessitatibus. Incidunt repudiandae ipsa velit, veritatis quas tempore dolores deleniti consequatur iste odit vel, earum consectetur cum a maxime alias quidem. Eos tempore dolore ipsam numquam laudantium ut tenetur accusantium sit cumque.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas placeat voluptatem quisquam ducimus necessitatibus. Incidunt repudiandae ipsa velit, veritatis quas tempore dolores deleniti consequatur iste odit vel, earum consectetur cum a maxime alias quidem. Eos tempore dolore ipsam numquam laudantium ut tenetur accusantium sit cumque.</p>
+         
+    </div>
+    
+
+    <script>
+        let div = document.querySelector('div');
+        let tooltip = document.querySelector('.tooltip');
+
+        tooltip.style.position = 'absolute';
+        div.addEventListener('mousemove', (e) => {
+            tooltip.style.display = 'block';
+            tooltip.style.left = e.offsetX + 15 + 'px';
+            tooltip.style.top = e.offsetY - 15 + 'px';
+        })
+        
+    </script>
+</body>
+</html>

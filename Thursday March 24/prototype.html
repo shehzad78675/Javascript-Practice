@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let user = {
+        name: "Shehzad",
+        surname: "Muhammad",
+        age: 30,
+
+        set fullname(value) {
+          [this.name, this.surname] = value.split(" ");
+        },
+
+        get fullname() {
+          return `${this.name} ${this.surname}`;
+        },
+      };
+
+      let admin = {
+        __proto__: user,
+        isAdmin: true,
+      };
+
+      console.log(admin.fullname);
+      console.log(admin.isAdmin);
+      console.log(admin.age);
+      console.log(user.age);
+
+      admin.age = 40;
+
+      console.log(admin.age);
+      console.log(user.age);
+
+      console.log(admin);
+
+      for (let item in admin) {
+        console.log(item);
+      }
+
+      console.log(Object.keys(admin));
+
+      let animal = {
+        eats: true,
+        walk() {
+          console.log("Animal walks");
+        },
+      };
+
+      let rabbit = {
+        jumps: true,
+        __proto__: animal,
+      };
+
+      let longerEar = {
+        length: 10,
+        __proto__: rabbit,
+      };
+
+      console.log(longerEar.eats);
+
+      let main = {
+        value: true,
+        count: 3,
+      };
+
+      let inherit = {
+        working: true,
+      };
+
+      inherit.__proto__ = main;
+
+      console.log(inherit.count);
+      console.log(inherit.value);
+      console.log(inherit.working);
+
+      function Rabbit(name) {
+        this.name = name;
+      }
+
+      Rabbit.prototype = animal;
+
+      let rabbit1 = new Rabbit("Black rebbit");
+
+      console.log(rabbit1.name);
+      console.log(rabbit1.walk());
+      console.log(rabbit1.eats);
+
+      console.log(rabbit1);
+
+      console.log(rabbit1.constructor == Rabbit);
+
+      function NewRabbit() {}
+
+      console.log(NewRabbit.prototype.constructor == NewRabbit);
+
+      function MakeRabbit() {}
+      MakeRabbit.prototype = {
+        jumps: true,
+      };
+
+      console.log(new MakeRabbit());
+
+      let rabbit2 = new MakeRabbit();
+      console.log(rabbit2.constructor == MakeRabbit);
+
+      function MakeRabbit1() {
+        MakeRabbit1.prototype = {
+          jumps: true,
+          constructor: Rabbit
+        };
+      }
+
+      console.log(new MakeRabbit1());
+
+      let rabbit3 = new MakeRabbit1();
+      console.log(rabbit3.constructor == MakeRabbit1);
+
+      Function.prototype.defer = function(ms){
+          let f = this;
+          return function(...args){
+              setTimeout(() => f.apply(this, args), ms);
+          }
+      }
+
+      function f(a, b){
+            console.log(a+b);
+    }
+
+      f.defer(1000)(5,10);
+
+
+       
+    </script>
+  </body>
+</html>

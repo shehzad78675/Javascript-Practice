@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+
+    <style>
+        #container{
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #inputBox{
+            margin-top: 50px;
+        }
+
+        #inputBox input{
+            padding: 2px 5px;
+            margin: 10px;
+            width: 300px;
+            height: 35px;
+            border: 2px solid black;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+
+        <h1>Reverse String</h1>
+        <div id="inputBox">
+
+            <input type="text" name="" id="takeInput" onkeyup="reverseString()">
+            <input type="text" name="" id="outPut" onkeyup="reverseString2()">
+        </div>
+    </div>
+
+    <script>
+        function reverseString(){
+            let str = document.getElementById('takeInput').value;
+
+            let reverseStr = "";
+
+            let length = str.length - 1;
+
+            while(length >= 0){
+                reverseStr += str[length];
+                // console.log(str[length]);
+                length--;
+            }
+
+            document.getElementById('outPut').value = reverseStr;
+        }
+
+        function reverseString2(){
+            let str = document.getElementById('outPut').value;
+
+            let reverseStr = "";
+
+            let length = str.length - 1;
+
+            while(length >= 0){
+                reverseStr += str[length];
+                // console.log(str[length]);
+                length--;
+            }
+
+            document.getElementById('takeInput').value = reverseStr;
+        }
+    </script>
+</body>
+</html>

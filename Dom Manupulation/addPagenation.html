@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <table>
+        tb
+    </table> -->
+
+    <script>
+      let objLength;
+      const pageLength = 20;
+      let db;
+
+      function makeTable(obj) {
+        let element = document.getElementById('dataTable');
+        if(element){
+            element.remove();
+        }
+        let table = document.createElement("table");
+        table.id = "dataTable";
+        table.setAttribute("border", "");
+        let thead = document.createElement("thead");
+
+        objLength = obj.length;
+        console.log(obj.length);
+        let tbody = document.createElement("tbody");
+        obj.forEach((element, index) => {
+          let tr = document.createElement("tr");
+          if (index == 0) {
+            let tr = document.createElement("tr");
+            for (let key in element) {
+              let text = document.createTextNode(key);
+              let th = document.createElement("th");
+              th.append(text);
+              tr.append(th);
+              thead.appendChild(tr);
+              table.append(thead);
+            }
+          }
+
+          for (let key in element) {
+            let text = document.createTextNode(element[key]);
+            let td = document.createElement("td");
+            td.append(text);
+            tr.append(td);
+          }
+          tbody.append(tr);
+        });
+        table.appendChild(tbody);
+        document.body.appendChild(table);
+      }
+
+      function addPagenation(length) {
+        let pages = Math.floor(length / pageLength); // 10
+
+        let div = document.createElement("div");
+        for (let i = 0; i < pages; i++) {
+          let number = document.createTextNode(i+1);
+          let btn = document.createElement("button");
+          // btn.onclick = changeS(i);
+          btn.setAttribute("onclick", `changeS(${i})`);
+          btn.appendChild(number);
+          div.append(btn);
+        }
+        document.body.appendChild(div);
+      }
+      fetch("https://jsonplaceholder.typicode.com/todos/")
+        .then((response) => response.json())
+        .then((json) => {
+          db = json;
+          addPagenation(db.length);
+          makeTable([...db].splice(0, pageLength));
+        });
+
+      function changeS(pageNum) {
+        //2
+        makeTable([...db].splice(pageLength * pageNum, pageLength));
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str1 = `Hello
+world`;
+
+        let str2 = "Hello\nworld";
+
+        console.log(str1);
+        console.log(str2);
+        console.log(str1 === str2);
+
+        console.log(str1.indexOf('l'));
+
+        function indexOfAll(str, target){
+            let pos=0;
+            while(str.indexOf(target, pos) != -1){
+                console.log(str.indexOf(target, pos));
+                pos = str.indexOf(target, pos)+1;
+            }
+        }
+        let str = "As sly as a fox, as strong as an ox";
+        let target = "as";
+
+        indexOfAll(str, target);
+
+        console.log(str.startsWith('s'));
+        console.log(str.endsWith('x'));
+        console.log(str.includes('x'));
+
+        let name = "shehzad";
+        name = name[0].toUpperCase() + name.slice(1);
+        console.log(name);
+
+        function checkSpam(str){
+            str = str.toLowerCase();
+            if(str.includes('xxxxx') || str.includes('viagra')){
+                return true;
+            }
+            return false;
+        }
+
+        console.log(checkSpam('buy ViAgRA now'));
+        console.log(checkSpam('free xxxxx'));
+        console.log(checkSpam("innocent rabbit"));
+
+        function truncate(str, length){
+            if(length < str.length){
+                console.log(str.slice(0, length-1) + '...');
+            }else{
+                console.log(str);
+            }
+        }
+
+        truncate("What I'd like to tell on this topic is:", 20);
+        truncate("Hi everyone!", 20);
+
+        function extractCurrency(str){
+            let temp = Number(str.slice(1));
+            return temp;
+        }
+
+        console.log( extractCurrency('$120') === 120 );
+    </script>
+</body>
+</html>

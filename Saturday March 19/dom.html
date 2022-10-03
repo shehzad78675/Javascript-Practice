@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="heading">Shehzad</h1>
+    <p class="para">Hi, Shehzad who are yoy</p>
+    <p class="para">Fine</p>
+
+    <ul>
+        <li>Name</li>
+        <li>Surname</li>
+        <li>Age</li>
+        <li>Designation</li>
+    </ul>
+
+    <script>
+        let tag = document.getElementsByTagName('p')[0].innerHTML;
+        console.log(tag);
+
+        let para = document.getElementById('heading');
+        console.log(para.innerHTML);
+
+        let newElement = document.createElement('p');
+        console.log(newElement);
+        let textNode = document.createTextNode(`What's your age`);
+        console.log(textNode);
+
+        newElement.appendChild(textNode);
+
+        console.log(newElement.innerHTML);
+
+        document.body.appendChild(newElement);
+
+        let ul = document.getElementsByTagName('ul');
+
+        ul.appendChild(newElement);
+    </script>
+</body>
+</html>

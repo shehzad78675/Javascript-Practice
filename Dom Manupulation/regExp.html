@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let reg = /\d/g;
+        let str = '723845635';
+        console.log(str.match(reg).join(''));
+
+        reg = /\d\s\w/;
+        str = 'hi 1 A s  4';
+        console.log(str.match(reg));
+
+        reg = /a.b/;
+        str = 'a\nb';
+        console.log(str.match(reg));
+
+        reg = /a.b/s;
+        str = 'a\nb';
+        console.log(str.match(reg));
+
+        reg = /\d\s\W/;
+        str = 'hi 1 @ s  4';
+        console.log(str.match(reg)); 
+
+        reg = /^Shehza d$/;
+        console.log(reg.test('Shehza  d'));
+
+        reg = /^\d/mg;
+
+        str = `1I am: Shehzad
+        2and i read: in islamia 
+        3university: of Bahawalpur`;
+
+        console.log(reg.test(str));
+        console.log(str.match(reg));
+
+        str = `1st place: Winnie
+        2nd place: Piglet
+        3rd place: Eeyore`;
+
+        console.log( str.match(/^\d/gm) );
+
+        reg = /\b\d\d\b/g;
+
+        str = '12 21 456 4567';
+        console.log(str.match(reg));
+
+        reg = /\b\d\d\b:\b\d\d\b/g;
+        console.log('12:13'.match(reg));
+
+        console.log('Breakfast at 09:00 in the room 123:456'.match(reg)[0]);
+
+        console.log('25:99'.match(reg));
+
+        let regx = new RegExp('\d\.\d');
+        console.log('Chapter 2.1'.match(regx));
+
+        regx = new RegExp('\\d\\.\\d');
+        console.log('Chapter 2.1'.match(regx));
+
+        reg = /[0-2]\d:[0-5]\d/g;
+
+        console.log("Breakfast at 09:00. Dinner at 21-30".match(reg));
+
+        reg = /\.{3,}/g;
+        console.log('Hello!... How goes?.....'.match(reg));
+
+        reg = /#[a-f0-9]{6}\b/gi;
+        console.log('color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2 #12345678'.match(reg));
+        let input = document.getElementById("sf");
+        input.files[0]
+        let body = new FormData();
+        body.append("pic", input.files[0]);
+        // fetch("url", {
+        //     method: "post",
+        //     header:{
+        //         Conte
+        //     }
+        //     body: body,
+        // })
+
+    </script>
+</body>
+</html>
